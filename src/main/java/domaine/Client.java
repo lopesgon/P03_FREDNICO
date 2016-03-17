@@ -5,7 +5,7 @@ package domaine;
  * 
  * Modélisation d'un client
  *
- * @author VOTRE NOM
+ * @author Fred & Nico
  */
 public class Client implements Comparable {
 
@@ -38,8 +38,20 @@ public class Client implements Comparable {
   
   /** L'ordre défini par cette méthode est indépendant de la casse */
   public int compareTo (Object obj) {
-    /**** À COMPLÉTER ****/
-    return 0;
+    Client cli = (Client)obj;
+      if (this.equals(obj)) {
+          return 0;
+      }else if (this.nom.compareTo(cli.getNom())>0) {
+          return 1;
+      }else if (this.nom.compareTo(cli.getNom())<0) {
+          return -1;
+      }else if (this.prenom.compareTo(cli.getPrenom())>0) {
+          return 1;
+      }else if (this.nom.compareTo(cli.getNom())<0) {
+          return -1;
+      }else{
+          return -1;// même nom et prenom, mais pas la même personne => retourne -1
+      }
   } // compareTo
 
 } // Client
