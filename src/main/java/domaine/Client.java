@@ -31,11 +31,7 @@ public class Client implements Comparable {
   public String getEMail () {return eMail;}
 
   public boolean equals (Object obj) {return ((Client)obj).idClient == idClient;}
-  
-  /**** À COMPLÉTER SI NÉCESSAIRE ****/
-  
-  /*** Interface Comparable ***/
-  
+
   /** L'ordre défini par cette méthode est indépendant de la casse */
   public int compareTo (Object obj) {
     Client cli = (Client)obj;

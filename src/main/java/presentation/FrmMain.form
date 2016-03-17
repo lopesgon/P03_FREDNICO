@@ -183,6 +183,10 @@
       </AuxValues>
     </Component>
     <Component class="java.awt.TextField" name="tfPrix">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="java.awt.Label" name="label8">
       <Properties>
@@ -194,6 +198,10 @@
       </AuxValues>
     </Component>
     <Component class="java.awt.TextField" name="tfMinInscrits">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="java.awt.Label" name="label9">
       <Properties>
@@ -205,9 +213,15 @@
       </AuxValues>
     </Component>
     <Component class="java.awt.TextField" name="tfMaxInscrits">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="java.awt.TextField" name="tfMessage">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="12" style="1"/>
         </Property>
