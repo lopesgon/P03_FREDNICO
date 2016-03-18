@@ -1,6 +1,6 @@
 package presentation;
 
-import base.OffreDao;
+import domaine.Client;
 import domaine.Offre;
 import java.util.ArrayList;
 import metier.ListeClients;
@@ -100,11 +100,35 @@ public class FrmMain extends java.awt.Frame {
 
     label4.setText("Nom");
 
+    tfNom.addTextListener(new java.awt.event.TextListener() {
+      public void textValueChanged(java.awt.event.TextEvent evt) {
+        donneesClientValid(evt);
+      }
+    });
+
     label5.setText("Prénom");
+
+    tfPrenom.addTextListener(new java.awt.event.TextListener() {
+      public void textValueChanged(java.awt.event.TextEvent evt) {
+        donneesClientValid(evt);
+      }
+    });
 
     label6.setText("e-mail");
 
+    tfEMail.addTextListener(new java.awt.event.TextListener() {
+      public void textValueChanged(java.awt.event.TextEvent evt) {
+        donneesClientValid(evt);
+      }
+    });
+
+    btnEnregistrer.setEnabled(false);
     btnEnregistrer.setLabel("Enregistrer l'inscription");
+    btnEnregistrer.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEnregistrerActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
@@ -212,6 +236,8 @@ public class FrmMain extends java.awt.Frame {
   
   private void initViews(){
     fillList(lstOffres, modOffres.getAll());
+    lstOffres.select(0);
+    showClients(modOffres.get(0));
   }
   
   private void fillList(java.awt.List list, ArrayList alst){
@@ -231,18 +257,44 @@ public class FrmMain extends java.awt.Frame {
     removeListItems(lstClients);
     showClients(modOffres.get(pos));
   }//GEN-LAST:event_lstOffresItemStateChanged
+
+  private void donneesClientValid(java.awt.event.TextEvent evt) {//GEN-FIRST:event_donneesClientValid
+    btnEnregistrer.setEnabled(false);
+    if(!(tfNom.getText().isEmpty() || tfPrenom.getText().isEmpty())){
+      int tk = new java.util.StringTokenizer(tfEMail.getText().trim(),"@").countTokens();
+      if(tk == 2){
+        btnEnregistrer.setEnabled(true);
+      }
+    }
+  }//GEN-LAST:event_donneesClientValid
+
+  private void btnEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnregistrerActionPerformed
+    String nom = tfNom.getText();
+    String prenom = tfPrenom.getText();
+    String eMail = tfEMail.getText().trim();
+    Client c = new Client(nom, prenom, eMail);
+    // c.setIdClient(modClients.addClient(c)); // version envisageable si l'instance DOIT avoir une valeur id
+    modClients.addClient(c);
+    clearTextFields();
+  }//GEN-LAST:event_btnEnregistrerActionPerformed
  
+  private void clearTextFields(){
+    tfNom.setText("");
+    tfPrenom.setText("");
+    tfEMail.setText("");
+  }
+  
   private void removeListItems(java.awt.List list) {
     while(list.getItemCount() > 0) {
       list.remove(0);
     }
   }
-  
+
   private void showClients(Offre offre) {
     modClients = new ListeClients(offre);
     fillList(lstClients, modClients.getAll());
   }
-  
+    
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private java.awt.Button btnEnregistrer;
   private java.awt.Label lblLstClients;
@@ -257,4 +309,5 @@ public class FrmMain extends java.awt.Frame {
   private java.awt.TextField tfPrix;
   // End of variables declaration//GEN-END:variables
 
+  
 } // FrmMain

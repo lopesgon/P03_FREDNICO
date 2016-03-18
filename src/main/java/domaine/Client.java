@@ -16,13 +16,17 @@ public class Client implements Comparable {
 
   /** Constructeurs */
   public Client (int idClient, String nom, String prenom, String eMail) {
-    this(nom, prenom, eMail);
+    this.nom = nom; this.prenom = prenom; this.eMail = eMail;
     this.idClient = idClient;
   } // Constructeur
 
   public Client (String nom, String prenom, String eMail) {
-    this.nom = nom; this.prenom = prenom; this.eMail = eMail;
+    this(-1, nom, prenom, eMail);
   } // Constructeur
+  
+  public Client(int idClient) {
+    this(idClient, "null", "null", "null");
+  }
 
   /** Accesseurs */
   public int getIdClient () {return idClient;}

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -17,11 +18,15 @@ import java.util.ArrayList;
 */
 public class ClientDao {
   
-  private static String QUERY_ALLCLIENTS = 
+  private static String 
+          QUERY_ALLCLIENTS = 
           "SELECT Client.IdClient, Nom, Prenom, eMail FROM Client "
           + "JOIN EstInscrit ON Client.IdClient = EstInscrit.IdClient "
           + "JOIN Offre ON Offre.IdOffre = EstInscrit.IdOffre "
-          + "WHERE Offre.IdOffre = ? ORDER BY Nom, Prenom";
+          + "WHERE Offre.IdOffre = ? ORDER BY Nom, Prenom",
+          
+          QUERY_CREATECLIENT =
+          "INSERT INTO Client (Nom, Prenom, eMail) VALUES(?,?,?)";
   
   /** Retourne la liste des clients d'une offre, dans l'ordre des nom et prénom. */
   public static ArrayList getListeClients (Offre offre) {
@@ -48,8 +53,19 @@ public class ClientDao {
   /** Insère le client dans la base de donnée; retourne l'identifiant qui lui a été attribué. 
       Retourne -1 en cas d'erreur. */
   public static int insertClient (Client client) {
-    /**** À COMPLÉTER ****/
-    return -1;
+    int id = -1;
+    try {
+      Connection con = ConnexionBase.get();
+      PreparedStatement stmt = con.prepareStatement(QUERY_CREATECLIENT);
+      stmt.setString(1, client.getNom());
+      stmt.setString(2, client.getPrenom());
+      stmt.setString(3, client.getEMail());
+      stmt.executeUpdate();
+    }catch(SQLException e){
+      System.out.println("base.ClientDao.insertClient()" + e.getMessage());
+      e.printStackTrace();
+    }
+    return id;
   } // insertClient  
 
 } // ClientDao

@@ -4,6 +4,8 @@ import domaine.Client;
 import domaine.Offre;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +17,9 @@ import java.util.ArrayList;
  */
 public class OffreDao {
 
-    private static final String QUERY_SELECT = "select * from offre;";
+    private static final String 
+            QUERY_SELECT = "select * from offre",
+            QUERY_ESTINSCRIT = "INSERT INTO EstInscrit VALUES(?,?)";
     /**
      * Retourne la liste des offres, dans l'ordre des libellés.
      */
@@ -42,13 +46,16 @@ public class OffreDao {
         return null;
     } // getListeOffres
 
-    /**
-     * Ajoute le client à l'offre.
-     */
-    public static void addClientOffre(Client client, Offre offre) {
-        /**
-         * ** À COMPLÉTER ***
-         */
-    } // addClientOffre  
+  public static void addClientOffre(Client client, Offre offre) {
+    try {
+      PreparedStatement stmt = ConnexionBase.get().prepareStatement(QUERY_ESTINSCRIT);
+      stmt.setInt(1, offre.getIdOffre());
+      stmt.setInt(2, client.getIdClient());
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      System.out.println("base.ClientDao.insertClient()" + e.getMessage());
+      e.printStackTrace();
+    }
+  } // addClientOffre  
 
 } // OffreDao

@@ -1,6 +1,7 @@
 package metier;
 
 import base.ClientDao;
+import base.ConnexionBase;
 import domaine.Client;
 import domaine.Offre;
 
@@ -26,7 +27,9 @@ public class ListeClients extends ListeObjects {
 
   /** Ajoute un client (dans l'ordre des nom et prénom) à cette liste */
   public void addClient (Client client) {
-    /**** À COMPLÉTER ****/
+    int id = ClientDao.insertClient(client);
+    System.out.println("Resultat obtenu pour id: " + id);
+    ConnexionBase.close();
   } // addClient
 
 } // ListeClients

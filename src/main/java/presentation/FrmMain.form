@@ -252,6 +252,9 @@
       </AuxValues>
     </Component>
     <Component class="java.awt.TextField" name="tfNom">
+      <Events>
+        <EventHandler event="textValueChanged" listener="java.awt.event.TextListener" parameters="java.awt.event.TextEvent" handler="donneesClientValid"/>
+      </Events>
     </Component>
     <Component class="java.awt.Label" name="label5">
       <Properties>
@@ -263,6 +266,9 @@
       </AuxValues>
     </Component>
     <Component class="java.awt.TextField" name="tfPrenom">
+      <Events>
+        <EventHandler event="textValueChanged" listener="java.awt.event.TextListener" parameters="java.awt.event.TextEvent" handler="donneesClientValid"/>
+      </Events>
     </Component>
     <Component class="java.awt.Label" name="label6">
       <Properties>
@@ -274,11 +280,18 @@
       </AuxValues>
     </Component>
     <Component class="java.awt.TextField" name="tfEMail">
+      <Events>
+        <EventHandler event="textValueChanged" listener="java.awt.event.TextListener" parameters="java.awt.event.TextEvent" handler="donneesClientValid"/>
+      </Events>
     </Component>
     <Component class="java.awt.Button" name="btnEnregistrer">
       <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="label" type="java.lang.String" value="Enregistrer l&apos;inscription"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnregistrerActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
