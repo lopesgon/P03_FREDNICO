@@ -7,4 +7,8 @@ public class Commentaire {
             Classe Main: enalbe = false pour les textfields qui représentent de l'informations
             Ajout de l'énoncé dans le projet et soulignement d'une ligne pour voir si la modification est enregistrée
 
+18.3.16     Class Offre : implements Comparable et ajout des méthdoes compareTo() + toString()
+            Class ClientDao : getListeClients() retourne l'ArrayList avec les instances de Client
+
+
 */

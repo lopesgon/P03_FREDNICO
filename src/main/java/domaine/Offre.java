@@ -5,9 +5,9 @@ package domaine;
  * 
  * Modélisation d'une offre
  *
- * @author VOTRE NOM
+ * @author Fred & Nico
  */
-public class Offre {
+public class Offre implements Comparable{
 
   private int idOffre;     /* Numéro de l'offre: identifiant */
   private String libelle;  /* Libellé de l'offre */
@@ -31,6 +31,10 @@ public class Offre {
 
   public boolean equals (Object obj) {return ((Offre)obj).idOffre == idOffre;}
   
-  /**** À COMPLÉTER SI NÉCESSAIRE ****/
+  public String toString() {return libelle;}
+  
+  public int compareTo(Object o) {
+    return libelle.compareTo(o.toString());
+  }
   
 } // Offre
