@@ -11,4 +11,5 @@ public class Commentaire {
             Class ClientDao : getListeClients() retourne l'ArrayList avec les instances de Client
             MAJ du pom.xml pour rendre le .jar executable
 
+18.3.16     Class OffreDao: méthode getListeOffre
 */

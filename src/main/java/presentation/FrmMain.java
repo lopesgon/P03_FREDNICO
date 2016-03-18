@@ -1,5 +1,9 @@
 package presentation;
 
+import base.OffreDao;
+import domaine.Offre;
+import java.util.ArrayList;
+
 /**
  * Module 634.1 - TP Série P03
  * 
@@ -17,7 +21,8 @@ public class FrmMain extends java.awt.Frame {
 
   /** Constructeur */
   public FrmMain () {
-    initComponents();
+    initComponents();    
+    showOffre();
   } // Constructeur
   
   /** This method is called from within the constructor to
@@ -188,7 +193,14 @@ public class FrmMain extends java.awt.Frame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//temporaire
+  private void showOffre(){
+      System.out.println("Voici les offres");
+      ArrayList lstOffre = OffreDao.getListeOffres();
+      for (Object o : lstOffre) {
+          System.out.println(o.toString());          
+      }
+  }
   /** Fin de l'application */
   private void exitForm(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_exitForm
     System.exit(0);
