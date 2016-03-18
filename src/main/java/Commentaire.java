@@ -9,6 +9,6 @@ public class Commentaire {
 
 18.3.16     Class Offre : implements Comparable et ajout des méthdoes compareTo() + toString()
             Class ClientDao : getListeClients() retourne l'ArrayList avec les instances de Client
-
+            MAJ du pom.xml pour rendre le .jar executable
 
 */
