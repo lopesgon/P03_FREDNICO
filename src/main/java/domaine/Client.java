@@ -49,5 +49,9 @@ public class Client implements Comparable {
           return -1;// même nom et prenom, mais pas la même personne => retourne -1
       }
   } // compareTo
+  
+  public String toString() {
+    return nom + " " + prenom + " [" + eMail + "]";
+  }
 
 } // Client

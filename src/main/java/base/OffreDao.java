@@ -19,7 +19,7 @@ public class OffreDao {
     /**
      * Retourne la liste des offres, dans l'ordre des libellés.
      */
-    public static ArrayList<Offre> getListeOffres() {
+    public static ArrayList getListeOffres() {
         ArrayList lstOffre = new ArrayList();
         try {
             PreparedStatement prep = ConnexionBase.get().prepareStatement(QUERY_SELECT);

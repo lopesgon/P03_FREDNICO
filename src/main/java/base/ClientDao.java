@@ -3,9 +3,9 @@ package base;
 import domaine.Client;
 import domaine.Offre;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -18,21 +18,26 @@ import java.util.ArrayList;
 public class ClientDao {
   
   private static String QUERY_ALLCLIENTS = 
-          "SELECT*FROM Client ORDER BY Nom, Prenom";
+          "SELECT Client.IdClient, Nom, Prenom, eMail FROM Client "
+          + "JOIN EstInscrit ON Client.IdClient = EstInscrit.IdClient "
+          + "JOIN Offre ON Offre.IdOffre = EstInscrit.IdOffre "
+          + "WHERE Offre.IdOffre = ? ORDER BY Nom, Prenom";
   
   /** Retourne la liste des clients d'une offre, dans l'ordre des nom et prénom. */
   public static ArrayList getListeClients (Offre offre) {
-    java.util.ArrayList<Client> lst = new ArrayList();
+    java.util.ArrayList lst = new ArrayList();
     try {
-    Connection con = ConnexionBase.get();
-    ResultSet rset = con.createStatement().executeQuery(QUERY_ALLCLIENTS);
-    while(rset.next()) {
-      int id = rset.getInt("IdClient");
-      String nom = rset.getString("Nom");
-      String prenom = rset.getString("Prenom");
-      String email = rset.getString("eMail");
-      lst.add(new Client(id, nom, prenom, email));
-    }
+      Connection con = ConnexionBase.get();
+      PreparedStatement stmt = con.prepareStatement(QUERY_ALLCLIENTS);
+      stmt.setInt(1, offre.getIdOffre());
+      ResultSet rset = stmt.executeQuery();
+      while(rset.next()) {
+        int id = rset.getInt("IdClient");
+        String nom = rset.getString("Nom");
+        String prenom = rset.getString("Prenom");
+        String email = rset.getString("eMail");
+        lst.add(new Client(id, nom, prenom, email));
+      }
     } catch (SQLException e) {
       System.out.println("base.ClientDao.getListeClients()" + e.getMessage());
       e.printStackTrace();

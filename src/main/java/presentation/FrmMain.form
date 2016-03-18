@@ -162,6 +162,9 @@
       </AuxValues>
     </Component>
     <Component class="java.awt.List" name="lstOffres">
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="lstOffresItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="java.awt.Label" name="lblLstClients">
       <Properties>

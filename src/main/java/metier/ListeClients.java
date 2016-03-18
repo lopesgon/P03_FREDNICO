@@ -9,7 +9,7 @@ import domaine.Offre;
  * 
  * Liste de clients (dans l'ordre des nom et prénom) s'étant inscrits à une offre
  *
- * @author VOTRE NOM
+ * @author Fred & Nico
  */
 public class ListeClients extends ListeObjects {
   

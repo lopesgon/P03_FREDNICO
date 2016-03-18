@@ -22,6 +22,8 @@ abstract class ListeObjects {
 
   /** Définit la position courante. NO_POS signifie qu'il n'y en a pas. Aucune validation n'est effectuée. */
   public final void setPos (int pos) {this.pos = pos;}
+  
+  public final ArrayList getAll() {return this.liste;}
 
   /** Retourne le nombre d'Objects de la liste. */
   public final int size () {return liste.size();}
