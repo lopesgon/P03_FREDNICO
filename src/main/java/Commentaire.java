@@ -12,4 +12,14 @@ public class Commentaire {
             MAJ du pom.xml pour rendre le .jar executable
 
 18.3.16     Class OffreDao: méthode getListeOffre
+20.3.16     base.ClientDao.getLastIdClient: retourne l'id de la personne qui vient dêtre ajouté
+            base.ClientDAo.getLastIdClient: retourne le plus grand indice client
+            suppression de la méthode qui vide une liste remplacé par la méthode existante list.removeAll()
+            lblLstClients se modifie en fonction de l'offre
+            Nouvelle class EstInscritDao
+            setEstInscrit = enregistre l'association Offre/Client
+            countNbInscrits = compte le nb d'inscrit pour une offre
+            Ctrl + shift + f => effectué pour certaines classes
+Remarque: je suis pas fan du fait de reconsulter la bases de données pour charger la liste Client après une insertion dans la BDD
+Suggestion: faire une liste d'estInscrit et parcourir cette dernière à la place
 */
