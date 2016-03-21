@@ -294,9 +294,7 @@ public class FrmMain extends java.awt.Frame {
       String nom = tfNom.getText();
       String prenom = tfPrenom.getText();
       String eMail = tfEMail.getText().trim();
-      int id = ClientDao.getLastIdClient() + 1;
-      Client c = new Client(id, nom, prenom, eMail);
-      // c.setIdClient(modClients.addClient(c)); // version envisageable si l'instance DOIT avoir une valeur id
+      Client c = new Client(nom, prenom, eMail);
       modClients.addClient(c);
       EstInscritDao.setEstInscrit(modOffres.getCourant(), c);
       lstClients.removeAll();

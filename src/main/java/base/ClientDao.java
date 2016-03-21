@@ -26,10 +26,7 @@ public class ClientDao {
          + "WHERE Offre.IdOffre = ? ORDER BY Nom, Prenom",
           
         QUERY_CREATECLIENT =
-        "INSERT INTO Client (Nom, Prenom, eMail) VALUES(?,?,?)",
-  
-        QUERY_LASTID = 
-        "SELECT max(Client.IdClient)'maxId' FROM Client;";
+        "INSERT INTO Client (Nom, Prenom, eMail) VALUES(?,?,?)";
   
     /**
      * Retourne la liste des clients d'une offre, dans l'ordre des nom et
@@ -64,11 +61,14 @@ public class ClientDao {
         int id = -1;
         try {
             Connection con = ConnexionBase.get();
-            PreparedStatement stmt = con.prepareStatement(QUERY_CREATECLIENT);
+            PreparedStatement stmt = con.prepareStatement(QUERY_CREATECLIENT,Statement.RETURN_GENERATED_KEYS);            
             stmt.setString(1, client.getNom());
             stmt.setString(2, client.getPrenom());
-            stmt.setString(3, client.getEMail());
+            stmt.setString(3, client.getEMail());            
             stmt.executeUpdate();
+            ResultSet result = stmt.getGeneratedKeys();
+            result.next();
+            client.setIdClient(result.getInt(1));
             return client.getIdClient();
         } catch (SQLException e) {
             System.out.println("base.ClientDao.insertClient()" + e.getMessage());
@@ -78,6 +78,10 @@ public class ClientDao {
     } // insertClient  
   
     //Retourne le dernier indice et retourne -1 s'il y en a pas
+    /*
+    private static String QUERY_LASTID = 
+        "SELECT max(Client.IdClient)'maxId' FROM Client;";
+    
     public static int getLastIdClient() {
         try {
             Connection con = ConnexionBase.get();
@@ -88,10 +92,9 @@ public class ClientDao {
             }
             stmt.close();
         } catch (Exception e) {
-            System.out.println("base.ClientDao.getLastIdClient " + e.getMessage());
-            
+            System.out.println("base.ClientDao.getLastIdClient " + e.getMessage());            
         }
         return -1;
-    }
+    }*/
 
 } // ClientDao

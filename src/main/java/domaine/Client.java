@@ -33,6 +33,8 @@ public class Client implements Comparable {
   public String getNom () {return nom;}
   public String getPrenom () {return prenom;}
   public String getEMail () {return eMail;}
+  
+  public void setIdClient(int id){this.idClient = id;};
 
   public boolean equals (Object obj) {return ((Client)obj).idClient == idClient;}
 

@@ -22,4 +22,6 @@ public class Commentaire {
             Ctrl + shift + f => effectué pour certaines classes
 Remarque: je suis pas fan du fait de reconsulter la bases de données pour charger la liste Client après une insertion dans la BDD
 Suggestion: faire une liste d'estInscrit et parcourir cette dernière à la place
+
+21.3.16     Modification de la méthode d'obtention de l'id du client
 */
